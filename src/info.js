@@ -58,6 +58,7 @@ export function getRandomBreed(breeds) {
     return breeds[randomIndex];
 }
 
+//Get the image from the breed id
 export async function getBreedImage(breedId) {
     const response = await fetch(
         `https://api.thedogapi.com/v1/images/search?breed_ids=${breedId}`,
@@ -68,15 +69,15 @@ export async function getBreedImage(breedId) {
         }
     );
 
-    const data = await response.json();
-
-    if (
-        data.length === 0 ||
-        data[0].breeds.length === 0
-    ) {
-        return null;
+   if (!response.ok) {
+        throw new Error(`API Error: ${response.status}`);
     }
 
-    return data[0].url;
+    const data = await response.json();
+
+    console.log("Image API response:", data);
+
+    return data[0]?.url || null;
 }
+
 
