@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import barkSound from "./assets/bark.mp3";
+import { playBark, handlePetCount } from "../buttons.jsx";
 
 import {
     initialize,
@@ -23,18 +23,9 @@ function App() {
   const [breedImage, setBreedImage] = useState([null]); 
   const [imageLoading, setImageLoading] = useState(true);
   
-  //Adds 1 when pet is clicked
-   async function handlePetCount() {
-    
-    setCount(count => count + 1);
-  }
+ 
 
-  //Reset stats
-  async function handleReset() {
-    
-    setCount(count => 0);
-    setBreedCount(breedCount => 0);
-  }
+ 
   
   //Next breed button
   function handleNextBreed() {
@@ -42,14 +33,6 @@ function App() {
     setCurrentBreed(randomBreed);
     setBreedCount(breedCount => breedCount + 1);
   }
-
-  //Play bark
-  function playBark() {
-    const audio = new Audio(barkSound);
-    audio.volume = 0.2;
-    audio.play();
-  }
-
 
   //Get the breeds then grabs a random one from the data and sets to use for display
   useEffect(() => {
@@ -121,12 +104,12 @@ function App() {
         {/* PET, RESET, NEXT Buttons */}
         <div className="button-container">
           <button onClick={() => { 
-            handlePetCount();
+            handlePetCount(setCount);
             playBark();
           }}>
             Pet Dog
           </button>
-          <button onClick={handleReset}> Reset Stats</button>
+          <button onClick={()=> handleReset(setCount, setBreedCount)}> Reset Stats</button>
           <button
             onClick={handleNextBreed}
             disabled={loadedBreeds.length === 0}

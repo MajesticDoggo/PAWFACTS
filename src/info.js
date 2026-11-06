@@ -80,4 +80,3 @@ export async function getBreedImage(breedId) {
     return data[0]?.url || null;
 }
 
-
