@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { playBark, handlePetCount } from "../buttons.jsx";
+import { playBark, handlePetCount, handleReset } from "../buttons.jsx";
 
 import {
     initialize,
@@ -16,8 +16,8 @@ import {
 
 function App() {
   const [count, setCount] = useState(0)
-  const [breedCount, setBreedCount] = useState(null);
-  const [currentBreed, setCurrentBreed] = useState(null);
+  const [breedCount, setBreedCount] = useState(0);
+  const [currentBreed, setCurrentBreed] = useState(0);
   const [breeds, setBreeds] = useState([]);
   const [loadedBreeds, setloadedBreeds] = useState([]);
   const [breedImage, setBreedImage] = useState([null]); 

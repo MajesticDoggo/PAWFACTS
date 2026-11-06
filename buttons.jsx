@@ -14,13 +14,13 @@ import barkSound from './src/assets/bark.mp3';
   }
 
 //Adds 1 when pet is clicked
-   export async function handlePetCount(setCount) {
+   export function handlePetCount(setCount) {
     setCount(prevCount => prevCount + 1);
   }
 
 //Reset stats
-    export async function handleReset(setCount, setBreedCount) {
+    export function handleReset(setCount, setBreedCount) {
 
-      setCount(count => 0);
-      setBreedCount(breedCount => 0);
+      setCount(0);
+      setBreedCount(0);
     }
